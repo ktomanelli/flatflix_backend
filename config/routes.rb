@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :user_videos
   resources :users
   resources :video_genres
   resources :genres
