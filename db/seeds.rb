@@ -34,14 +34,18 @@ VideoGenre.destroy_all
                     if !Genre.find_by(name:genre)
                         gen = Genre.create(name:genre)
                         VideoGenre.create(video_id:vid.id,genre_id:gen.id)
-    
+                    else
+                        gen = Genre.find_by(name:genre)
+                        VideoGenre.create(video_id:vid.id,genre_id:gen.id)
                     end
                 end
             else
                 if !Genre.find_by(name:newGenre)
                     gen = Genre.create(name:newGenre)
                     VideoGenre.create(video_id:vid.id,genre_id:gen.id)
-    
+                else
+                    gen = Genre.find_by(name:newGenre)
+                    VideoGenre.create(video_id:vid.id,genre_id:gen.id)
                 end
             end
         end
