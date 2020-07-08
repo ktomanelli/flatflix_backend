@@ -15,6 +15,9 @@ VideoGenre.destroy_all
     data["results"].each do |movie|
         newRes = RestClient.get "http://www.omdbapi.com/?apikey=43e36491&t=#{URI.encode(movie["title"])}"
         newData = JSON.parse(newRes.body)
+        yt = RestClient.get("http://youtube-scrape.herokuapp.com/api/search?q=#{newData["title"]} trailer&page=1")
+        video = JSON.parse(yt.body)["results"][0]
+        
         newGenre = newData["Genre"]
         vid = Video.create(
             title:newData["Title"],
@@ -26,6 +29,7 @@ VideoGenre.destroy_all
             poster_url:newData["Poster"],
             plot:newData["Plot"],
             imdb_rating:newData["imdbRating"],
+            youtube:(video)
         )
         if newGenre
             if newGenre.include?(',')
