@@ -14,7 +14,9 @@ class VideosController < ApplicationController
         movies = {}
         genres = Genre.all
         genres.each do |genre|
-            movies[genre.name] = genre.videos
+            if genre.videos.count>=6
+                movies[genre.name] = genre.videos
+            end
         end
         render json: movies
     end
