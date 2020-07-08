@@ -9,7 +9,7 @@
 Genre.destroy_all
 Video.destroy_all
 VideoGenre.destroy_all
-5.times {|i|
+25.times {|i|
     res=RestClient.get "https://api.themoviedb.org/3/discover/movie?api_key=6ccb94cd2c533a5189819f3915add83d&page=#{i+1}"
     data = JSON.parse(res.body)
     data["results"].each do |movie|
@@ -17,7 +17,7 @@ VideoGenre.destroy_all
         newData = JSON.parse(newRes.body)
         yt = RestClient.get("http://youtube-scrape.herokuapp.com/api/search?q=#{newData["title"]} trailer&page=1")
         video = JSON.parse(yt.body)["results"][0]
-        
+
         newGenre = newData["Genre"]
         vid = Video.create(
             title:newData["Title"],
