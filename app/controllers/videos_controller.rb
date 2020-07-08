@@ -12,9 +12,9 @@ class VideosController < ApplicationController
     
     def movies
         movies = {}
-        genres = Genre.all
+        genres = Genre.all.sort
         genres.each do |genre|
-            if genre.videos.count>=6
+            if genre.videos.count>=7
                 movies[genre.name] = genre.videos
             end
         end

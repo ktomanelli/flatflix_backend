@@ -14,11 +14,27 @@ VideoGenre.destroy_all
     res=RestClient.get "https://api.themoviedb.org/3/discover/movie?api_key=6ccb94cd2c533a5189819f3915add83d&page=#{i+1}"
     data = JSON.parse(res.body)
     data["results"].each do |movie|
+        puts movie["title"]
+        puts''
         newRes = RestClient.get "http://www.omdbapi.com/?apikey=43e36491&t=#{URI.encode(movie["title"])}"
         newData = JSON.parse(newRes.body)
-        yt = RestClient.get("http://youtube-scrape.herokuapp.com/api/search?q=#{newData["title"]} trailer&page=1")
+        yt = RestClient.get("http://youtube-scrape.herokuapp.com/api/search?q=#{URI.encode(movie["title"])} movie trailer&page=1")
         video = JSON.parse(yt.body)["results"][0]
+        check_for_vid=false
+        x=0
+        while check_for_vid == false do
+            if video.keys[0]!='video'
+                x+=1
+                video = JSON.parse(yt.body)["results"][x]
+            else
+                check_for_vid=true
+            end
 
+        end
+        puts video
+        puts ''
+        puts ''
+        puts ''
         newGenre = newData["Genre"]
         vid = Video.create(
             title:newData["Title"],
