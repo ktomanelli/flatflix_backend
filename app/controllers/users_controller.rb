@@ -14,6 +14,7 @@ class UsersController < ApplicationController
             render json: {message: "Failed to create new user"}, status: 403
         end
     end
+
     def login
         @user = User.find_by(username:params[:username])
         if @user && @user.authenticate(params[:password])
@@ -23,6 +24,7 @@ class UsersController < ApplicationController
             render json: {message:'Incorrect username or password'}
         end
     end
+
     def stay_logged_in
         token = encode_token({user_id: @user.id})
         render json:{
@@ -30,4 +32,5 @@ class UsersController < ApplicationController
             token: token
         }
     end
+    
 end
