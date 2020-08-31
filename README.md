@@ -22,4 +22,7 @@ Flatflix was built with a Rails backend which handles user authentication as wel
 ## How to Run (backend)
 
 - Clone this repo as well as the [frontend repo](https://github.com/dbsk11/flatflix_frontend), navigate to the project root in your terminal.
-- Run `npm start`
+- Create environment variables for [TMDB_API_KEY](https://developers.themoviedb.org/3/getting-started/authentication) and [OMDB_API_KEY](http://www.omdbapi.com/apikey.aspx?__EVENTTARGET=freeAcct&__EVENTARGUMENT=&__LASTFOCUS=&__VIEWSTATE=%2FwEPDwUKLTIwNDY4MTIzNQ9kFgYCAQ9kFgICBw8WAh4HVmlzaWJsZWhkAgIPFgIfAGhkAgMPFgIfAGhkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYDBQtwYXRyZW9uQWNjdAUIZnJlZUFjY3QFCGZyZWVBY2N0x0euvR%2FzVv1jLU3mGetH4R3kWtYKWACCaYcfoP1IY8g%3D&__VIEWSTATEGENERATOR=5E550F58&__EVENTVALIDATION=%2FwEdAAU5GG7XylwYou%2BzznFv7FbZmSzhXfnlWWVdWIamVouVTzfZJuQDpLVS6HZFWq5fYpioiDjxFjSdCQfbG0SWduXFd8BcWGH1ot0k0SO7CfuulN6vYN8IikxxqwtGWTciOwQ4e4xie4N992dlfbpyqd1D&at=freeAcct&Email=)
+- Run `rails db:create`
+- Run `rails db:seed`
+- Run `rails s`
